@@ -1,0 +1,18 @@
+<script id="clpc-header-home-script">
+    (()=>{
+      const addHome=()=>document.querySelectorAll('.elementor-location-header img[src*="/payhip"]').forEach(image=>{
+        const row=image.closest('[data-e-type="e-flexbox"],.e-con');
+        if(!row||row.querySelector('.clpc-home-link'))return;
+        const link=document.createElement('a');link.className='clpc-home-link';link.href="https:\/\/capitalistltdparty.com\/";link.setAttribute('aria-label','Return home');
+        const icon=document.createElement('img');icon.src="https:\/\/capitalistltdparty.com\/wp-content\/plugins\/clp-connected-wheel\/images\/return-home.png";icon.alt='Return home';icon.width=1536;icon.height=1024;link.appendChild(icon);
+        const heartWidget=image.closest('.elementor-widget-image');
+        const mobile=window.matchMedia('(max-width:767px)');
+        const positionHome=()=>{
+          if(mobile.matches&&heartWidget)heartWidget.insertBefore(link,heartWidget.firstChild);
+          else row.appendChild(link);
+        };
+        positionHome();mobile.addEventListener('change',positionHome);
+      });
+      if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',addHome,{once:true});else addHome();
+    })();
+    </script>
